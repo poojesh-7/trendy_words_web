@@ -32,7 +32,7 @@ const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const { login: loginFn } = useAuth();
+  const { login: loginFn,setUid } = useAuth();
   const router = useRouter();
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -58,7 +58,7 @@ const Login = () => {
       } else if (resp.error) {
         finalMessage = resp.error;
       } else if (resp.token) {
-        loginFn(resp.token);
+        loginFn(resp.token,resp.user.id);
         finalMessage = isLogin
           ? "Logged in successfully!"
           : "Account created successfully!";

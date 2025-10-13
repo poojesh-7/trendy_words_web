@@ -3,15 +3,18 @@ import { createContext, useContext, useEffect, useState, ReactNode } from "react
 
 type AuthContextType = {
   token: string | null;
+  userId:number;
   setToken: (token: string | null) => void;
-  login: (newToken: string) => void;
+  login: (newToken: string,id:number) => void;
   logout: () => void;
+  setUid:(id:number)=>void
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setTokenState] = useState<string | null>(null);
+  const [uid, setUid] = useState<number | null>(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -29,16 +32,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setTokenState(newToken);
   };
 
-  const login = (newToken: string) => {
+  const login = (newToken: string,id:number) => {
     setToken(newToken);
+    setUid(id)
   };
-
+  
   const logout = () => {
     setToken(null);
+    setUid(null)
   };
 
   return (
-    <AuthContext.Provider value={{ token, setToken, login, logout }}>
+    <AuthContext.Provider value={{ token, setToken, login, logout,userId:uid }}>
       {children}
     </AuthContext.Provider>
   );

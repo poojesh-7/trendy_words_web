@@ -55,7 +55,7 @@ export default function RootLayout({
         <AuthProvider>
           <QueryProvider>
             <NavProvider>
-              <Navbar />
+              <Navbar url={process.env.NEXT_BACKEND_URL} />
               {children}
             </NavProvider>
           </QueryProvider>
