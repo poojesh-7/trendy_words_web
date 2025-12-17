@@ -5,7 +5,7 @@ import WordCard from "./WordCard";
 import { useQuery } from "@/context/QueryProvider";
 import Fuse from "fuse.js";
 import { EfficientQuery } from "@/context/EfficientQuery";
-
+import { ChevronLeft, ChevronRight } from "lucide-react";
 interface Word {
   trendy_word: string;
   alter_word?: string;
@@ -16,7 +16,6 @@ interface UserWordsProps {
   words: Word[];
 }
 
-// ✅ Updated Merge Sort to handle objects
 function mergeSort(arr: Word[], order: "asc" | "desc" = "asc"): Word[] {
   if (arr.length <= 1) return arr;
 
@@ -119,26 +118,55 @@ const UserWords = ({ words }: UserWordsProps) => {
         )}
 
         {filteredWords.length > wordsPerPage && (
-          <div className="flex items-center space-x-4 mt-[50px]">
-            <button
-              onClick={handlePrev}
-              disabled={currentPage === 1}
-              className="px-4 py-2 rounded bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
-            >
-              Prev
-            </button>
-            <span className="text-gray-700 font-medium">
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={handleNext}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 rounded bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-300"
-            >
-              Next
-            </button>
-          </div>
-        )}
+  <div className="flex flex-col items-center gap-4 mt-12 mb-8">
+    <div className="flex items-center p-1 bg-white border border-slate-200 rounded-2xl shadow-sm">
+      <button
+        onClick={handlePrev}
+        disabled={currentPage === 1}
+        className="flex items-center gap-1 px-4 py-2 rounded-xl transition-all duration-200 
+                   text-slate-600 font-medium
+                   hover:bg-cyan-50 hover:text-cyan-700 
+                   disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed"
+      >
+        <ChevronLeft className="w-4 h-4" />
+        <span>Prev</span>
+      </button>
+
+      <div className="h-6 w-[1px] bg-slate-200 mx-2" /> {/* Divider */}
+
+      <div className="px-4 py-2">
+        <span className="text-slate-400 text-sm font-semibold uppercase tracking-wider">
+          Page 
+          <span className="text-slate-900 mx-1.5">{currentPage}</span> 
+          of 
+          <span className="text-slate-900 mx-1.5">{totalPages}</span>
+        </span>
+      </div>
+
+      <div className="h-6 w-[1px] bg-slate-200 mx-2" /> {/* Divider */}
+
+      <button
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+        className="flex items-center gap-1 px-4 py-2 rounded-xl transition-all duration-200 
+                   text-slate-600 font-medium
+                   hover:bg-cyan-50 hover:text-cyan-700 
+                   disabled:opacity-40 disabled:hover:bg-transparent disabled:cursor-not-allowed"
+      >
+        <span>Next</span>
+        <ChevronRight className="w-4 h-4" />
+      </button>
+    </div>
+    
+    {/* Visual indicator bar */}
+    <div className="w-32 h-1 bg-slate-100 rounded-full overflow-hidden">
+      <div 
+        className="h-full bg-cyan-400 transition-all duration-300 ease-out"
+        style={{ width: `${(currentPage / totalPages) * 100}%` }}
+      />
+    </div>
+  </div>
+)}
       </div>
     </>
   );

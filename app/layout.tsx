@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import { AuthProvider } from "@/context/AuthProvider";
 import QueryProvider from "@/context/QueryProvider";
 import NavProvider from "@/context/NavShowProvider";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +58,7 @@ export default function RootLayout({
             <NavProvider>
               <Navbar url={process.env.NEXT_BACKEND_URL} />
               {children}
+              <Footer />
             </NavProvider>
           </QueryProvider>
         </AuthProvider>
