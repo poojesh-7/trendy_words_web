@@ -32,7 +32,7 @@ const Profile = () => {
     return <Loader />;
   }
   return (
-    <main className="min-h-screen bg-slate-50 pt-24 lg:pt-32 pb-20 px-6">
+    <main className="min-h-screen mt-[-50px] pt-24 lg:pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
         <aside className="w-full lg:w-80 lg:sticky lg:top-32 space-y-6 animate-in fade-in slide-in-from-left-8 duration-700">
           <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm text-center lg:text-left">
