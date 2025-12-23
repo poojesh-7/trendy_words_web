@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { registerUser } from "@/apis/user";
 import { useAuth } from "@/context/AuthProvider";
 import { useRouter } from "next/navigation";
@@ -32,9 +32,15 @@ const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const { login: loginFn,setUid } = useAuth();
+  const { login: loginFn,token } = useAuth();
   const router = useRouter();
 
+  useEffect(() => {
+    if (token) {
+      router.replace("/profile");
+    }
+  }, [token, router]);
+  
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage(null);
@@ -62,7 +68,7 @@ const Login = () => {
         finalMessage = isLogin
           ? "Logged in successfully!"
           : "Account created successfully!";
-        router.push("/profile");
+        // router.push("/profile");
       } else {
         finalMessage = "Unexpected response from server.";
       }

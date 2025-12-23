@@ -74,15 +74,15 @@ const Navbar = ({url}:{url:string}) => {
   let content
   if(noti.length===0 || !token){
     content=<div className="absolute right-0 top-[64px]">
-             <div className="h-[150px] w-[200px] bg-green-400 flex items-center justify-center">
-              <p>No Notifications</p>
+             <div className="h-[150px] w-[200px] bg-cyan-100 flex items-center justify-center">
+              <p className="text-gray-500">No Notifications</p>
             </div>
           </div>
   }else{
-    content=<div className="absolute right-0 top-[64px]">
-            <div className="h-[150px] w-[200px]  rounded-b-[2px] bg-green-400 overflow-y-auto">
+    content=<div className="absolute text-sm right-0 top-[64px]">
+            <div className="h-[150px] w-[200px]  rounded-b-[2px] bg-cyan-100 overflow-y-auto">
               {noti.map((item,i)=>(
-                <div key={i} className=" p-[5px] border-b-[2px]"> 
+                <div key={i} className="text-gray-500 p-[5px] border-b-[2px]"> 
                   <p>
                     {item.message || `New trendy word added: ${item.trendy_word}`}
                   </p>

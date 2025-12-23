@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Loader from "../Loader";
 import WordCard from "./WordCard";
 import { User, Hash, Sparkles, Calendar, Settings, LogOut } from "lucide-react";
+import Link from "next/link";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -94,9 +95,11 @@ const Profile = () => {
               <p className="text-slate-500 mt-2 mb-6">
                 Found some new slang? Be the first to define it.
               </p>
-              <button className="bg-cyan-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-900 transition-colors">
-                Create a Word
-              </button>
+              <Link href="/share">
+                <button className="bg-cyan-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-slate-900 transition-colors">
+                  Create a Word
+                </button>
+              </Link>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
