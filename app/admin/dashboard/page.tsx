@@ -6,7 +6,6 @@ import StatsCards from "@/components/admin/StatsCards";
 import TrendsChart from "@/components/admin/TrendsChart";
 import UsersTable from "@/components/admin/UsersTable";
 import FlaggedTable from "@/components/admin/FlaggedTable";
-console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
 export default function Dashboard() {
   const [stats, setStats] = useState(null);
   const [trends, setTrends] = useState([]);

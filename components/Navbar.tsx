@@ -21,7 +21,6 @@ const Navbar = ({url}:{url:string}) => {
   const router=useRouter()
   const { token,logout,userId,role } = useAuth();
   const {setQuery}=useQuery()
-  console.log(token ,role)
   const logoutFn=async()=>{
     try{
       logout()
