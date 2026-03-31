@@ -19,8 +19,9 @@ const Navbar = ({url}:{url:string}) => {
   const [openNoti,setOpenNoti]=useState(false)
   const pathName = usePathname();
   const router=useRouter()
-  const { token,logout,userId } = useAuth();
+  const { token,logout,userId,role } = useAuth();
   const {setQuery}=useQuery()
+  console.log(token ,role)
   const logoutFn=async()=>{
     try{
       logout()
@@ -143,6 +144,15 @@ const Navbar = ({url}:{url:string}) => {
                 
                 className={navClass}>
                   Signup
+                </Link>
+              )}
+              {token && role === "admin" && (
+                <Link
+                  onClick={() => setShow(false)}
+                  href="/admin/dashboard"
+                  className={navClass}
+                >
+                  Dashboard
                 </Link>
               )}
               {token && (
@@ -280,6 +290,17 @@ const Navbar = ({url}:{url:string}) => {
                 className={navClass}>
               Signup
             </Link>}
+
+              {token && role === "admin" && (
+                <Link
+                  onClick={() => setShow(false)}
+                  href="/admin/dashboard"
+                  className={navClass}
+                >
+                  Dashboard
+                </Link>
+              )}
+
             {
               token &&
                 <button 

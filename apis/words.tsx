@@ -1,7 +1,7 @@
 'use server'
 
 
-const BACKEND = process.env.NEXT_BACKEND_URL;
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 interface WordProps{
     word:string;

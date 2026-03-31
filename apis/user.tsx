@@ -1,7 +1,7 @@
 "use server"
 import { GetUserWords } from "./words";
 
-const BACKEND = process.env.NEXT_BACKEND_URL;
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 type RegisterModel = {
   name: string;

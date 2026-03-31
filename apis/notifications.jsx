@@ -1,5 +1,5 @@
 "use server";
-const BACKEND = process.env.NEXT_BACKEND_URL;
+const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const GetAllNotifications = async (token) => {
   const res = await fetch(`${BACKEND}/notifications`, {

@@ -64,7 +64,7 @@ const Login = () => {
       } else if (resp.error) {
         finalMessage = resp.error;
       } else if (resp.token) {
-        loginFn(resp.token,resp.user.id);
+        loginFn(resp.token,resp.user.id,resp.user.role);
         finalMessage = isLogin
           ? "Logged in successfully!"
           : "Account created successfully!";
