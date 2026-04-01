@@ -58,7 +58,9 @@ const Navbar = ({url}:{url:string}) => {
       // GetAllNotifications(token)
       //   .then((data) => setNoti(data))
       //   .catch((err) => console.error(err));
-      socket.emit("registerUser", userId);
+      if(userId){
+        socket.emit("registerUser", userId);
+      }
 
       socket.on("newWordNotification", (data) => {
         setNoti((prev) => [data, ...prev]);
