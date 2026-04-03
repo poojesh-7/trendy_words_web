@@ -26,7 +26,7 @@ const WordCard = ({ trendy_word, alter_word, emoji, needMargin }: WordProps) => 
   return (
     <div className={`
       relative overflow-hidden group
-      bg-blue/80 backdrop-blur-sm border border-cyan-100
+      bg-white backdrop-blur-sm border border-cyan-100
       min-w-[320px] p-6 rounded-2xl shadow-sm
       transition-all duration-300 ease-out
       hover:shadow-xl hover:-translate-y-2 hover:bg-white

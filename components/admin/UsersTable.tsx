@@ -13,7 +13,7 @@ export default function UsersTable({ users }) {
         </thead>
         <tbody>
           {users.map((u) => (
-            <tr key={u.id} className="border-b">
+            <tr key={u.id} className="border-b text-black">
               <td className="p-2">{u.name}</td>
               <td className="p-2">{u.email}</td>
               <td className="p-2">

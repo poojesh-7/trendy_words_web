@@ -123,6 +123,12 @@ const Navbar = ({url}:{url:string}) => {
                 className={navClass}>
                 Words
               </Link>
+              <Link onClick={()=>setShow(false)}
+                href="/top"
+              
+                className={navClass}>
+                Top words
+              </Link>
               {token && (
                 <Link onClick={()=>setShow(false)}
                   href="/profile"
@@ -269,6 +275,12 @@ const Navbar = ({url}:{url:string}) => {
                 className={navClass} >
               Words
             </Link>
+            <Link onClick={()=>setShow(false)}
+                href="/top"
+              
+                className={navClass}>
+                Top words
+              </Link>
             {token && (
               <Link onClick={()=>setShow(false)}
                 href="/profile"
