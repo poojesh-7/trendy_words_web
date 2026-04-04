@@ -1,4 +1,10 @@
-export default function KPICards({ stats }) {
+interface Stats {
+  users: number;
+  words: number;
+  toxic: number;
+}
+
+export default function KPICards({ stats }: { stats: Stats }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {[

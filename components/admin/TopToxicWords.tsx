@@ -1,4 +1,9 @@
-export default function TopToxicWords({ data }) {
+interface ToxicData {
+  trendy_word: string;
+  toxic_score: number;
+}
+
+export default function TopToxicWords({ data }: { data: ToxicData[] }) {
   const top = [...data]
     .sort((a, b) => b.toxic_score - a.toxic_score)
     .slice(0, 5);

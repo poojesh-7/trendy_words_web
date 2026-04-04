@@ -18,5 +18,6 @@ export default function NavProvider({children}:{children:ReactNode}){
 
 export const useNav=()=>{
     const ctx=useContext(NavContext);
-    return ctx
+    if(!ctx) throw new Error("useNav must be used inside NavProvider");
+    return ctx;
 }

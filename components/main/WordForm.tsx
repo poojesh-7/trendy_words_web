@@ -29,6 +29,12 @@ const WordForm = () => {
     const word =wordRef.current?.value.trim() || "";
     const meaning = meaningRef.current?.value.trim() || "";
 
+    if (!token) {
+      setMessage("Not authenticated");
+      setLoading(false);
+      return;
+    }
+
     try {
       const resp = await AddTrendyWord(word,meaning,token);
       let finalMessage: string | string[];

@@ -10,15 +10,46 @@ import TopToxicWords from "@/components/admin/TopToxicWords";
 import UsersTable from "@/components/admin/UsersTable";
 import BubbleChartComponent from "@/components/admin/BubbleChartComponent";
 import TimeSeriesChart from "@/components/admin/TimeSeriesChart";
+import Loader from "@/components/Loader";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
+interface Stats {
+  users: number;
+  words: number;
+  toxic: number;
+}
+
+interface ToxicData {
+  trendy_word: string;
+  toxic_score: number;
+}
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+interface BubbleData {
+  usage_count: number | string;
+  toxic_score: number | string;
+  unique_users: number | string;
+  trendy_word: string;
+}
+
+interface TimeData {
+  date: string;
+  count: number | string;
+}
+
 export default function Dashboard() {
-  const [stats, setStats] = useState(null);
-  const [words, setWords] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [bubbleData, setBubbleData] = useState([]);
-  const [timeData, setTimeData] = useState([]);
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [words, setWords] = useState<ToxicData[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [bubbleData, setBubbleData] = useState<BubbleData[]>([]);
+  const [timeData, setTimeData] = useState<TimeData[]>([]);
   const [loading, setLoading] = useState(true);
 
   const token =
@@ -79,8 +110,8 @@ export default function Dashboard() {
 
         setWords(safeWords);
         setUsers(Array.isArray(usersData) ? usersData : []);
-      } catch (err) {
-        console.error("Dashboard error:", err.message);
+      } catch (err: any) {
+        console.error("Dashboard error:", err.message || String(err));
       } finally {
         setLoading(false);
       }
@@ -98,7 +129,7 @@ export default function Dashboard() {
   }
 
   if (loading) {
-    return <p className="text-gray-400 p-5">Loading dashboard...</p>;
+    <Loader />
   }
 
   return (

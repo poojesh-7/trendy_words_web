@@ -10,7 +10,14 @@ import {
   ZAxis,
 } from "recharts";
 
-export default function BubbleChartComponent({ data }) {
+interface BubbleData {
+  usage_count: number | string;
+  toxic_score: number | string;
+  unique_users: number | string;
+  trendy_word: string;
+}
+
+export default function BubbleChartComponent({ data }: { data: BubbleData[] }) {
   const formatted = data.map((d) => ({
     x: Number(d.usage_count),
     y: Number(d.toxic_score),

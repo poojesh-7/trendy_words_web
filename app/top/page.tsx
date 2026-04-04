@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/Loader";
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell, ResponsiveContainer } from "recharts";
 
@@ -29,8 +30,13 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
+interface TrendData {
+  trendy_word: string;
+  frequency: number;
+}
+
 export default function GlobalPage() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<TrendData[]>([]);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/global/trends`)
@@ -52,6 +58,9 @@ export default function GlobalPage() {
       })
       .catch(err => console.error("Global fetch error:", err));
   }, []);
+  if(!data || data.length===0){
+    return <Loader />
+  }
 
   return (
     <>

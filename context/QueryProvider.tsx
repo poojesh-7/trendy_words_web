@@ -17,6 +17,7 @@ export default function QueryProvider({children}:{children:ReactNode}){
 }
 
 export const useQuery=()=>{
-    const ctx=useContext(QueryCtx)
-    return ctx
+    const ctx=useContext(QueryCtx);
+    if(!ctx) throw new Error("useQuery must be used inside QueryProvider");
+    return ctx;
 }

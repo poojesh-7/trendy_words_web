@@ -1,6 +1,11 @@
 import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-export default function ScatterCluster({ data }) {
+interface ToxicData {
+  trendy_word: string;
+  toxic_score: number;
+}
+
+export default function ScatterCluster({ data }: { data: ToxicData[] }) {
   const formatted = data.map((d, i) => ({
     index: i,
     toxic_score: d.toxic_score,

@@ -8,13 +8,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import {io} from "socket.io-client"
+import {io, Socket} from "socket.io-client"
 
 const navClass="text-white-700 block px-3 py-2 rounded-md text-base font-medium hover:text-yellow-300 active:text-yellow-400 focus:outline-none"
 let socket: Socket | null = null;
 
-const Navbar = ({url}:{url:string}) => {
-  const [noti,setNoti]=useState([])
+const Navbar = ({url}:{url?:string}) => {
+  const [noti,setNoti]=useState<any[]>([])
   const {show,setShow}=useNav()
   const [openNoti,setOpenNoti]=useState(false)
   const pathName = usePathname();
@@ -24,10 +24,10 @@ const Navbar = ({url}:{url:string}) => {
   const logoutFn=async()=>{
     try{
       logout()
-      await UserLogout(token)
+      if(token) await UserLogout(token)
       router.push("/")
-    }catch(e){
-      alert(e)
+    }catch(e: any){
+      alert(e.message || String(e))
     }
   }
 
@@ -52,6 +52,7 @@ const Navbar = ({url}:{url:string}) => {
       if (!token) return;
 
       if (!socket) {
+        if(!url) return;
         socket = io(url);
       }
 
@@ -62,7 +63,7 @@ const Navbar = ({url}:{url:string}) => {
         socket.emit("registerUser", userId);
       }
 
-      socket.on("newWordNotification", (data) => {
+      socket.on("newWordNotification", (data: any) => {
         setNoti((prev) => [data, ...prev]);
       });
 
@@ -238,7 +239,7 @@ const Navbar = ({url}:{url:string}) => {
             </div>
           </div>
           <button
-            onClick={()=>setShow(prev=>!prev)}
+            onClick={()=>setShow(!show)}
             className="inline-flex items-center justify-center mr-[50px] p-2 rounded-md text-white-400 hover:text-white-500 hover:bg-white-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
           >
             <span className="sr-only">Open main menu</span>

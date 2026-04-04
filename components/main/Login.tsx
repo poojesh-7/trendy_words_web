@@ -21,6 +21,7 @@ type APIResponse = {
   errors?: APIError[];
   error?: string;
   message?: string;
+  user?: { id: number; role: string };
 };
 
 const Login = () => {
@@ -52,8 +53,8 @@ const Login = () => {
 
     try {
       const payload = isLogin
-        ? { login: true, email, password }
-        : { login: false, name, email, password };
+        ? ({ login: true, email, password } as const)
+        : ({ login: false, name, email, password } as const);
 
       const resp: APIResponse = await registerUser(payload);
 
@@ -63,12 +64,14 @@ const Login = () => {
         finalMessage = resp.errors.map((item) => item.msg);
       } else if (resp.error) {
         finalMessage = resp.error;
-      } else if (resp.token) {
-        loginFn(resp.token,resp.user.id,resp.user.role);
+      } else if (resp.token && resp.user) {
+        loginFn(resp.token, resp.user.id, resp.user.role);
         finalMessage = isLogin
           ? "Logged in successfully!"
           : "Account created successfully!";
         // router.push("/profile");
+      } else if (resp.token) {
+        finalMessage = "Login successful but user data missing.";
       } else {
         finalMessage = "Unexpected response from server.";
       }

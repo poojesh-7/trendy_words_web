@@ -1,6 +1,11 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-export default function ToxicBarChart({ data }) {
+interface ToxicData {
+  trendy_word: string;
+  toxic_score: number;
+}
+
+export default function ToxicBarChart({ data }: { data: ToxicData[] }) {
   return (
     <div className="bg-gray-900 p-5 rounded-xl">
       <h2 className="mb-4 font-semibold">Toxicity Heatmap</h2>

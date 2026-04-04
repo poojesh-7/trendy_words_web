@@ -18,8 +18,16 @@ export const metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+
 const WordsPage = async () => {
-  const userwords = await AllWords();
+  let userwords = [];
+  try {
+    userwords = await AllWords();
+  } catch (error) {
+    console.error("Failed to fetch words:", error);
+    // Return empty array or handle error
+  }
 
   return (
     <div className="mt-[100px] flex flex-col justify-center items-center">

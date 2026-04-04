@@ -1,6 +1,11 @@
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
-export default function DonutChart({ data }) {
+interface ToxicData {
+  trendy_word: string;
+  toxic_score: number;
+}
+
+export default function DonutChart({ data }: { data: ToxicData[] }) {
   const safe = data.filter(d => d.toxic_score <= 0.09).length;
   const toxic = data.length - safe;
 

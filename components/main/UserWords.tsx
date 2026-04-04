@@ -109,6 +109,7 @@ const UserWords = ({ words }: UserWordsProps) => {
               trendy_word={word.trendy_word}
               alter_word={word.alter_word}
               emoji={word.emoji}
+              needMargin={false}
             />
           ))}
         </div>

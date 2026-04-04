@@ -1,4 +1,11 @@
-export default function UsersTable({ users }) {
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+export default function UsersTable({ users }: { users: User[] }) {
   return (
     <div className="bg-white p-5 rounded-xl shadow mt-6 overflow-x-auto">
       <h2 className="text-lg font-semibold mb-4">Users</h2>

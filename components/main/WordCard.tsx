@@ -3,7 +3,7 @@ import React from 'react';
 
 type WordProps = {
   trendy_word: string;
-  alter_word: string;
+  alter_word?: string;
   emoji?: string; 
   needMargin: boolean;
 };

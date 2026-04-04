@@ -9,7 +9,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function TimeSeriesChart({ data }) {
+interface TimeData {
+  date: string;
+  count: number | string;
+}
+
+export default function TimeSeriesChart({ data }: { data: TimeData[] }) {
   const formatted = data.map((d) => ({
     date: d.date,
     count: Number(d.count),
